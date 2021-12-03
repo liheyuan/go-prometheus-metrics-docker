@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gmm-deployment
+  labels:
+    app: gmm
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: gmm
+  template:
+    metadata:
+      labels:
+        app: gmm 
+        tier: backend
+    spec:
+      containers:
+      - name: gmm
+        image: coder4/go-prometheus-metrics:latest
+        ports:
+        - name: web 
+          containerPort: 2222 
